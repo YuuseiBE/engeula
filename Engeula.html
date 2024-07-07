@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Bot</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #333; /* Header background color */
+    color: #fff; /* Header text color */
+    padding: 10px 20px; /* Padding: 10px top/bottom, 20px left/right */
+    text-align: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .header a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 10px; /* Margin between buttons */
+    padding: 8px 12px; /* Button inner padding */
+    border: 1px solid #fff; /* Button border */
+    border-radius: 4px; /* Button border radius */
+  }
+
+  .header a:hover {
+    background-color: #555; /* Background color on hover */
+  }
+
+  .form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+  }
+
+  .form-container h2 {
+    text-align: center;
+  }
+
+  .form-container input[type="text"],
+  .form-container input[type="password"],
+  .form-container input[type="email"],
+  .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .form-container button {
+    width: auto;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .form-container button:hover {
+    background-color: #555;
+  }
+
+  /* Discord icon style */
+  .discord-mark {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 24px; /* Discord icon width */
+    height: 24px; /* Discord icon height */
+  }
+
+  /* Title style displayed at the top left */
+  .site-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="site-title">Operating Bot</div>
+
+  <header class="header">
+    <a href="#">Login</a>
+    <a href="#">Sign Up</a>
+    <a href="#" id="email-link">Send Email</a>
+    <a href="https://yuuseibe.github.io/endula/eula.html">Japanace</a>
+    <button onclick="downloadDiscordInstaller()">Download Discord</button>
+    <a href="https://yuuseibe.github.io/opreport/out.html#home">Report Abuse</a>  
+  </header>
+  
+  <div class="form-container" id="login-form">
+    <h2>Login</h2>
+    <form>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div class="form-container" id="signup-form">
+    <h2>Sign Up</h2>
+    <form>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <div class="form-container" id="email-form" style="display: none;">
+    <h2>Send Email</h2>
+    <form id="email-send-form">
+      <input type="text" placeholder="Name" id="name" required>
+      <input type="email" placeholder="Email" id="email" required>
+      <textarea placeholder="Message" id="message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <div class="form-container" id="report-abuse-form" style="display: none;">
+    <h2>Report Abuse</h2>
+    <form id="report-abuse-send-form">
+      <input type="text" placeholder="Name" id="report-name" required>
+      <input type="email" placeholder="Contact Email" id="report-email" required>
+      <textarea placeholder="Details" id="report-details" rows="5" required></textarea>
+      <button type="submit">Report</button>
+    </form>
+  </div>
+
+  <div style="text-align: center; margin-top: 50px;">
+    <h2>Operating Bot Terms of Service and Privacy Policy</h2>
+    <p>By adding this Bot, you agree to the following Terms of Service and Privacy Policy.</p>
+
+    <h3>Terms of Service</h3>
+    <p>These Terms of Service (hereinafter referred to as "Terms") stipulate the conditions for using Operating Bot (hereinafter referred to as "Bot"). All users (hereinafter referred to as "Users") must agree to the content of these Terms before using the Bot.</p>
+
+    <h4>1. Purpose of the Bot</h4>
+    <p>The purpose of the Bot is to provide useful functions that everyone can use. Users shall use the Bot legally in accordance with these Terms.</p>
+
+    <h4>2. Prohibited Actions</h4>
+    <ul>
+      <li>Spamming, harassment, and other offensive behavior</li>
+      <li>Actions that violate laws or regulations</li>
+      <li>Actions that infringe on the intellectual property rights of others</li>
+    </ul>
+
+    <h4>3. Disclaimer</h4>
+    <p>The developers are not responsible for any problems or troubles arising from the use of the Bot. Users shall use the Bot at their own risk and will not claim any damages.</p>
+
+    <h4>4. Changes and Suspension of Service</h4>
+    <p>The developers reserve the right to change or suspend the content of the Bot in the following cases:</p>
+    <ul>
+      <li>Planned suspensions for technical issues or improvements</li>
+      <li>Suspension due to legal requirements or judicial orders</li>
+      <li>Suspension due to unforeseen circumstances</li>
+    </ul>
+    <p>The developers will make efforts to notify users of important information regarding the suspension of the Bot through appropriate means, but the Bot may be suspended without notice. The developers are not responsible for any damages caused by the suspension.</p>
+
+    <h4>5. Intellectual Property Rights</h4>
+    <p>The intellectual property rights related to the Bot and associated materials belong to the developers. Users are not allowed to reproduce, modify, or sell these without permission from the developers.</p>
+
+    <h4>6. Privacy Policy</h4>
+    <p>The handling of users' personal information is governed by a separate Privacy Policy. Users must agree to this policy before using the Bot.</p>
+
+    <h4>7. Governing Law</h4>
+    <p>These Terms shall be governed and interpreted in accordance with Japanese law. Please be careful, especially if you are a foreigner.</p>
+
+    <h4>Access Token Request</h4>
+    <p>We do not request access tokens, client secrets, or passwords, so please rest assured.</p>
+
+    <h4>Report Abuse</h4>
+
+    <h3>Privacy Policy</h3>
+    <p>This Privacy Policy (hereinafter referred to as "Policy") stipulates the conditions for handling personal information of users (hereinafter referred to as "Users") when using Operating Bot (hereinafter referred to as "Bot"). This Policy applies to users of the Bot. Users must agree to the content of this Policy before using the Bot.</p>
+
+    <h4>1. Information Collected</h4>
+    <p>The Bot may collect the following information:</p>
+    <ul>
+      <li>Users' Discord user IDs and nicknames</li>
+      <li>Data generated when using the Bot's functions (e.g., command history)</li>
+      <li>Technical information (e.g., IP addresses, browser types)</li>
+    </ul>
+
+    <h4>2. Purpose of Use</h4>
+    <p>The Bot uses users' information for the following purposes:</p>
+    <ul>
+      <li>Providing and operating services</li>
+      <li>Establishing communication with users</li>
+      <li>Improving services and developing new features</li>
+      <li>Complying with legal requirements</li>
+    </ul>
+
+    <h4>3. Information Sharing and Disclosure</h4>
+    <p>The Bot will not disclose or provide users' personal information to third parties without users' consent, except in the following cases:</p>
+    <ul>
+      <li>When required by law</li>
+      <li>When necessary to protect the rights or property of the Bot</li>
+      <li>When necessary for the protection of human life or property</li>
+    </ul>
+
+    <h4>4. Data Security</h4>
+    <p>The Bot takes reasonable measures to protect users' information. However, the Bot cannot guarantee complete security. Users should use the Bot at their own risk.</p>
+
+    <h4>5. Policy Changes</h4>
+    <p>The Bot may change this Policy as needed. Users are encouraged to regularly check the latest content of this Policy.</p>
+
+    <h4>Contact Us</h4>
+    <p>If you have any questions about this Policy, please contact us at the address provided on the Bot's official page.</p>
+  </div>
+
+  <script>
+    document.getElementById("email-link").addEventListener("click", function (event) {
+      event.preventDefault();
+      const emailForm = document.getElementById("email-form");
+      if (emailForm.style.display === "none") {
+        emailForm.style.display = "block";
+      } else {
+        emailForm.style.display = "none";
+      }
+    });
+
+    function downloadDiscordInstaller() {
+      const link = document.createElement('a');
+      link.href = 'https://discord.com/api/download'; 
+      link.download = 'DiscordSetup.exe';
+      link.click();
+    }
+
+    // Replace this with your Discord webhook URL
+    const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
+
+    document.getElementById("report-abuse-send-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const reportName = document.getElementById("report-name").value;
+      const reportEmail = document.getElementById("report-email").value;
+      const reportDetails = document.getElementById("report-details").value;
+
+      const payload = {
+        username: "Report Bot",
+        embeds: [
+          {
+            title: "New Abuse Report",
+            fields: [
+              { name: "Name", value: reportName },
+              { name: "Contact Email", value: reportEmail },
+              { name: "Details", value: reportDetails }
+            ]
+          }
+        ]
+      };
+
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("Your report has been sent.");
+          } else {
+            alert("Failed to send the report.");
+          }
+        })
+        .catch(error => {
+          alert("An error occurred: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>
